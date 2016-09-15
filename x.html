@@ -3,8 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>CodyHouse Add To Cart Interaction</title>
-    <!-- <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet"> -->
+    <title>User Feedback Widget</title>
     <link rel="stylesheet" href="css/reset.css" charset="utf-8">
     <link rel="stylesheet" href="css/style.css" charset="utf-8">
     <script src="js/jquery-2.2.4.min.js"></script>
@@ -16,70 +15,37 @@
 
     <main>
 
-        <a href="#" class="cd-add-to-cart" data-price="25.99" data-product-id="1" data-product-image="img/product-preview.png">Add To Cart</a>
+
     </main>
 
-    <div class="cd-cart-container empty">
-        <a href="#0" class="cd-cart-trigger">
-            Cart
-            <ul class="count">
-                <li>0</li>
-                <li>0</li>
-            </ul>
-        </a>
+    <div class="feedback-container">
 
-        <div class="cd-cart">
-            <div class="wrapper">
-                <header>
-                    <h2>Cart</h2>
-                    <span class="undo">Item removed <a href="#0">Undo</a></span>
-                </header>
+        <a href="#" class="feedback-trigger">!</a>
 
-                <div class="body">
+        <div class="feedback-pages">
 
-                    <ul>
+            <div class="feedback-page content" data-pagename="one">
 
-                        <script id="product-template" type="text/template">
-                            <li class="product">
-                                <div class="product-image">
-                                    <a href="#0"><img src="{{image}}" alt="placeholder"></a>
-                                </div>
-                                <div class="product-details">
-                                    <h3><a href="#0">Product Name</a></h3>
-                                    <div class="actions"><a href="#0" class="delete-item">Delete</a>
-                                        <div class="quantity">
-                                            <label for="cd-product-{{productId}}">Qty</label>
-                                            <span class="select">
-                                                <select id="cd-product-{{productId}}" name="quantity">
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
-                                                <option value="9">9</option>
-                                                </select>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="price">{{price}}</div>
-                            </li>
-                        </script>
+                <h1 class="content-title">Send us a message</h1>
 
-                    </ul>
+                <textarea class="content-textarea" placeholder="Give feedback or ask for help"></textarea>
 
-                </div>
+                <a href="#" class="content-submit">Submit</a>
 
-                <footer>
-                    <a href="#0" class="checkout btn">
-                        <em>Checkout - $<span>0</span></em>
-                    </a>
-                </footer>
             </div>
+
+            <div class="feedback-page content" data-pagename="two">
+
+                <h1 class="content-title">What should we do next?</h1>
+
+            </div>
+
+            <div class="feedback-page content" data-pagename="three">
+                3
+            </div>
+
         </div>
+
 
 
     </div>

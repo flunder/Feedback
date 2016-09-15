@@ -1,4 +1,7 @@
-var Cart = {
+/* SCREENS
+--------------------------------------- */
+
+var Feedback = {
 
     init: function(){
         this.cacheDom();
@@ -7,53 +10,58 @@ var Cart = {
     },
 
     settings: function(){
-        itemsInCart: 0
+
     },
 
     cacheDom: function(){
-        this.$el = $(".cd-cart-container");
-        this.$cartList = this.$el.find('ul');
-        this.$productTemplate = this.$el.find('#product-template').html();
-        this.$openCloseTrigger = this.$el.find('.cd-cart-trigger');
+        this.$el = $(".feedback-container");
+        this.$feedbackTrigger = this.$el.find('.feedback-trigger');
     },
 
     bindEvents: function(){
-        $(document).on('click', '.cd-add-to-cart', this.addToCart.bind(this));
-        this.$openCloseTrigger.on('click', this.openCloseCart.bind(this));
+        this.$feedbackTrigger.on('click', this.toggleWidget.bind(this));
     },
 
-    openCloseCart: function(){
-        this.$el.toggleClass('cart-open');
-    },
-
-    addToCart: function(e){
-        this.addProduct(e);
-        this.$el.removeClass('empty');
-        e.preventDefault();
-    },
-
-    addProduct: function(e){
-
-        var data = {
-            image:     $(e.target).data('productImage'),
-            price:     $(e.target).data('price'),
-            productId: $(e.target).data('productId')
-        }
-
-        var productAdded = Mustache.render(this.$productTemplate, data);
-
-        this.$cartList.prepend(productAdded);
-
-    },
-
-    cartUpdated: function(){
-
+    toggleWidget: function(e){
+        this.$el.toggleClass('isOpen');
+        e.preventDefault()
     }
 
 }
 
+/* SCREENS
+--------------------------------------- */
 
+var Pages = {
+
+    $currentPage: false,
+
+    init: function(){
+        this.cacheDom();
+        this.bindEvents();
+        this.ready();
+    },
+
+    cacheDom: function(){
+        this.$pages = $('.feedback-page');
+    },
+
+    bindEvents: function(){
+        this.$pages.on('show', this.showPage.bind(this));
+    },
+
+    ready: function(){
+        this.showPage(this.$pages.first().data('pagename'));
+    },
+
+    showPage: function(name){
+        this.$pages.removeClass('isVisible');
+        this.$currentPage = this.$pages.filter('[data-pagename="' + name + '"]').addClass('isVisible');
+    },
+
+}
 
 $(function(){
-    Cart.init();
+    Feedback.init();
+    Pages.init();
 })

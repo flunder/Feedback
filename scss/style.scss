@@ -3,126 +3,137 @@
 @import "../partials/_mixins.scss";
 @import "../partials/_base.scss";
 
+$t_open: .5s;
+
 /* --------------------------------
 
 Primary style
 
 -------------------------------- */
 
+.feedback-container {
+    width: 50px;
+    height: 50px;
 
-
-/*
-    Positioning the Trigger and
-    the cart on the bottom right
-    of the screen
-*/
-
-.cd-cart-trigger,
-.cd-cart {
     position: fixed;
-    bottom: 20px;
-    right: 5%;
-    transition: transform .2s;
+    bottom: 50px;
+    right: 50px;
 
-    .empty & {
-        transform: translateY(150px);
+    border-radius: 5px;
+    overflow: hidden;
+
+    transition: width 0.5s 0.15s, height 0.5s 0.15s;
+    transition-timing-function: cubic-bezier(0.71, -0.34, 0.35, 1.11);
+
+    &.isOpen {
+        width: 300px;
+        height: 300px;
+
+        transition: width 0.4s, height 0.4s;
+        transition-timing-function: cubic-bezier(0.74, -0.18, 0.38, 1.32);
+
+        .feedback-trigger {
+            border-radius: 0px;
+            transition: border-radius 0s;
+        }
     }
-}
 
-.cd-cart-trigger {
-	/* button that triggers the cart content */
-	z-index: 3;
-	height: 72px;
-	width: 72px;
-    /* replace text with image */
-    text-indent: 100%;
-    color: transparent;
-    white-space: nowrap;
-    background: red;
-}
-
-.cd-cart {
-    z-index: 2;
-    width: 90%;
-    max-width: 440px;
-    height: 400px;
-    max-height: 90%;
-    pointer-events: none;
-
-    .wrapper {
+    .feedback-trigger {
+        width: 50px;
+        height: 50px;
+        display: block;
+        border-radius: 5px;
         position: absolute;
-        bottom: 0;
+
         right: 0;
-        z-index: 2;
-        overflow: hidden;
-        height: 72px;
-        width: 72px;
-        border-radius: 6px;
-        transition: height .4s .1s, width  .4s .1s, box-shadow .3s;
-        transition-timing-function: cubic-bezier(0.67, 0.17, 0.32, 0.95);
-        background: #ffffff;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.17);
-        pointer-events: auto;
-
-        .cart-open & {
-            width: 100%;
-            height: 100%;
-        }
-    }
-
-    .cart-open & .wrapper {
-      height: 100%;
-      width: 100%;
-      transition-delay: 0s;
-    }
-
-    .body {
-
-        ul {
-
-        }
-
-        li {
-
-            &.deleted {
-                /* this class is added to an item when it is removed form the cart */
-                position: absolute;
-                left: 1.4em;
-                width: calc(100% - 2.8em);
-                opacity: 0;
-                animation: cd-item-slide-out .3s forwards;
-            }
-
-        }
-
-    }
-
-    .product {
-        display: flex;
-        padding: 20px;
-
-        .product-image {
-            width: 50px;
-        }
-
-        .product-details {
-            width: 100%;
-            padding: 0.3em 0 0 0.5em;
-
-            h3 a {
-                font-weight: bold;
-                color: #2b3e51;
-            }
-        }
-
-    }
-
-    footer {
+        bottom: 0;
+        z-index: 10;
+        padding: 20px 22px;
+        font-size: 16px;
         background: white;
+
+        transition: border-radius 0s 1s;
     }
+
 }
 
-@keyframes cd-item-slide-out {
-    0%   { transform: translateX(0); opacity: 1; }
-    100% { transform: translateX(80px); opacity: 0; }
+.feedback-pages {
+    width: 100%;
+    height: 100%;
+
+    .feedback-page {
+        background: white;
+        width: 100%;
+        height: 100%;
+        padding: 15px;
+        display: none;
+
+        &.isVisible {
+            display: inline-block;
+        }
+    }
+
+    .content {
+        font-size: 12px;
+
+        h1,
+        h2,
+        h3 {
+            margin: 0;
+            padding: 0;
+        }
+
+        .content-title {
+            font-size: 1.33333em;
+            text-align: center;
+            font-weight: bold;
+            padding: 15px;
+        }
+
+        .content-submit {
+            position: absolute;
+            z-index: 5;
+            bottom: 0;
+            left: 0;
+
+            width: calc(100% - 50px);
+            height: 50px;
+            padding: 16px;
+
+            text-align: center;
+
+            color: white;
+            background: #2c97de;
+
+            font-size: 1.5em;
+            font-weight: 500;
+
+            align-items: center;
+        }
+
+        .content-textarea {
+            border-radius: 5px;
+            padding: 12px;
+            border-color: #ddd;
+            width: 100%;
+            height: 54%;
+            margin-top: 10px;
+        }
+
+        /* Show-Animation */
+
+        .content-title,
+        .content-textarea {
+            opacity: 0;
+
+            transition: opacity .5s 0s;
+
+            .isOpen & {
+                opacity: 1;
+                transition: opacity .5s .25s;
+            }
+        }
+
+    }
+
 }
