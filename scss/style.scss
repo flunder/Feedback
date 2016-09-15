@@ -1,0 +1,128 @@
+@import "../partials/_variables.scss";
+@import "../partials/_layout.scss";
+@import "../partials/_mixins.scss";
+@import "../partials/_base.scss";
+
+/* --------------------------------
+
+Primary style
+
+-------------------------------- */
+
+
+
+/*
+    Positioning the Trigger and
+    the cart on the bottom right
+    of the screen
+*/
+
+.cd-cart-trigger,
+.cd-cart {
+    position: fixed;
+    bottom: 20px;
+    right: 5%;
+    transition: transform .2s;
+
+    .empty & {
+        transform: translateY(150px);
+    }
+}
+
+.cd-cart-trigger {
+	/* button that triggers the cart content */
+	z-index: 3;
+	height: 72px;
+	width: 72px;
+    /* replace text with image */
+    text-indent: 100%;
+    color: transparent;
+    white-space: nowrap;
+    background: red;
+}
+
+.cd-cart {
+    z-index: 2;
+    width: 90%;
+    max-width: 440px;
+    height: 400px;
+    max-height: 90%;
+    pointer-events: none;
+
+    .wrapper {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        z-index: 2;
+        overflow: hidden;
+        height: 72px;
+        width: 72px;
+        border-radius: 6px;
+        transition: height .4s .1s, width  .4s .1s, box-shadow .3s;
+        transition-timing-function: cubic-bezier(0.67, 0.17, 0.32, 0.95);
+        background: #ffffff;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.17);
+        pointer-events: auto;
+
+        .cart-open & {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .cart-open & .wrapper {
+      height: 100%;
+      width: 100%;
+      transition-delay: 0s;
+    }
+
+    .body {
+
+        ul {
+
+        }
+
+        li {
+
+            &.deleted {
+                /* this class is added to an item when it is removed form the cart */
+                position: absolute;
+                left: 1.4em;
+                width: calc(100% - 2.8em);
+                opacity: 0;
+                animation: cd-item-slide-out .3s forwards;
+            }
+
+        }
+
+    }
+
+    .product {
+        display: flex;
+        padding: 20px;
+
+        .product-image {
+            width: 50px;
+        }
+
+        .product-details {
+            width: 100%;
+            padding: 0.3em 0 0 0.5em;
+
+            h3 a {
+                font-weight: bold;
+                color: #2b3e51;
+            }
+        }
+
+    }
+
+    footer {
+        background: white;
+    }
+}
+
+@keyframes cd-item-slide-out {
+    0%   { transform: translateX(0); opacity: 1; }
+    100% { transform: translateX(80px); opacity: 0; }
+}

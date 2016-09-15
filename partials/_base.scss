@@ -1,0 +1,41 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font: {
+        size: 1.6rem;
+        family: $primary-font; // variables inside partials > _variables.scss
+    }
+    color: $color-1;
+    background-color: $color-4;
+}
+
+a {
+    color: $color-2;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+main {
+    text-align: center;
+    padding: 2em 5%;
+}
+
+h1 {
+    font-size: 2rem;
+    padding: 3em 0 .8em;
+
+    @include MQ(M) {
+        font-size: 3.2rem;
+    }
+}

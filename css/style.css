@@ -1,0 +1,121 @@
+*, *::after, *::before {
+  box-sizing: border-box; }
+
+html {
+  font-size: 62.5%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+body {
+  font-size: 1.6rem;
+  font-family: "Source Sans Pro", sans-serif;
+  color: #2b3e51;
+  background-color: #ecf0f1; }
+
+a {
+  color: #2c97de;
+  text-decoration: none; }
+
+img {
+  max-width: 100%; }
+
+main {
+  text-align: center;
+  padding: 2em 5%; }
+
+h1 {
+  font-size: 2rem;
+  padding: 3em 0 .8em; }
+  @media only screen and (min-width: 768px) {
+    h1 {
+      font-size: 3.2rem; } }
+
+/* --------------------------------
+
+Primary style
+
+-------------------------------- */
+/*
+    Positioning the Trigger and
+    the cart on the bottom right
+    of the screen
+*/
+.cd-cart-trigger,
+.cd-cart {
+  position: fixed;
+  bottom: 20px;
+  right: 5%;
+  transition: transform .2s; }
+  .empty .cd-cart-trigger, .empty
+  .cd-cart {
+    transform: translateY(150px); }
+
+.cd-cart-trigger {
+  /* button that triggers the cart content */
+  z-index: 3;
+  height: 72px;
+  width: 72px;
+  /* replace text with image */
+  text-indent: 100%;
+  color: transparent;
+  white-space: nowrap;
+  background: red; }
+
+.cd-cart {
+  z-index: 2;
+  width: 90%;
+  max-width: 440px;
+  height: 400px;
+  max-height: 90%;
+  pointer-events: none; }
+  .cd-cart .wrapper {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+    overflow: hidden;
+    height: 72px;
+    width: 72px;
+    border-radius: 6px;
+    transition: height .4s .1s, width  .4s .1s, box-shadow .3s;
+    transition-timing-function: cubic-bezier(0.67, 0.17, 0.32, 0.95);
+    background: #ffffff;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.17);
+    pointer-events: auto; }
+    .cart-open .cd-cart .wrapper {
+      width: 100%;
+      height: 100%; }
+  .cart-open .cd-cart .wrapper {
+    height: 100%;
+    width: 100%;
+    transition-delay: 0s; }
+  .cd-cart .body li.deleted {
+    /* this class is added to an item when it is removed form the cart */
+    position: absolute;
+    left: 1.4em;
+    width: calc(100% - 2.8em);
+    opacity: 0;
+    animation: cd-item-slide-out .3s forwards; }
+  .cd-cart .product {
+    display: flex;
+    padding: 20px; }
+    .cd-cart .product .product-image {
+      width: 50px; }
+    .cd-cart .product .product-details {
+      width: 100%;
+      padding: 0.3em 0 0 0.5em; }
+      .cd-cart .product .product-details h3 a {
+        font-weight: bold;
+        color: #2b3e51; }
+  .cd-cart footer {
+    background: white; }
+
+@keyframes cd-item-slide-out {
+  0% {
+    transform: translateX(0);
+    opacity: 1; }
+  100% {
+    transform: translateX(80px);
+    opacity: 0; } }
+
+/*# sourceMappingURL=style.css.map */
