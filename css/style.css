@@ -1,3 +1,6 @@
+.text-grey {
+  color: #8e8e8e; }
+
 *, *::after, *::before {
   box-sizing: border-box; }
 
@@ -46,9 +49,9 @@ Primary style
   transition: width 0.5s 0.15s, height 0.5s 0.15s;
   transition-timing-function: cubic-bezier(0.71, -0.34, 0.35, 1.11); }
   .feedback-container.isOpen {
-    width: 300px;
-    height: 300px;
-    transition: width 0.4s, height 0.4s;
+    width: 320px;
+    height: 270px;
+    transition: width 0.35s, height 0.35s;
     transition-timing-function: cubic-bezier(0.74, -0.18, 0.38, 1.32); }
     .feedback-container.isOpen .feedback-trigger {
       border-radius: 0px;
@@ -68,16 +71,29 @@ Primary style
     transition: border-radius 0s 1s; }
 
 .feedback-pages {
-  width: 100%;
-  height: 100%; }
+  width: 300%;
+  height: 100%;
+  background: white;
+  opacity: 0;
+  transition: opacity 1s .25s; }
+  .isOpen .feedback-pages {
+    opacity: 1;
+    transition: opacity 0s 0s; }
   .feedback-pages .feedback-page {
     background: white;
-    width: 100%;
+    width: 33.33333%;
     height: 100%;
     padding: 15px;
-    display: none; }
-    .feedback-pages .feedback-page.isVisible {
-      display: inline-block; }
+    float: left;
+    transform: translateX(0%);
+    transition: transform .35s;
+    transition-timing-function: cubic-bezier(0.89, -0.37, 0.48, 0.99); }
+    [data-show-page="1"] .feedback-pages .feedback-page {
+      transform: translateX(0%); }
+    [data-show-page="2"] .feedback-pages .feedback-page {
+      transform: translateX(-100%); }
+    [data-show-page="3"] .feedback-pages .feedback-page {
+      transform: translateX(-200%); }
   .feedback-pages .content {
     font-size: 12px;
     /* Show-Animation */ }
@@ -90,28 +106,38 @@ Primary style
       font-size: 1.33333em;
       text-align: center;
       font-weight: bold;
-      padding: 15px; }
+      padding: 9px;
+      line-height: 1.7; }
     .feedback-pages .content .content-submit {
       position: absolute;
       z-index: 5;
       bottom: 0;
       left: 0;
-      width: calc(100% - 50px);
+      width: 100%;
       height: 50px;
       padding: 16px;
+      text-indent: -50px;
       text-align: center;
       color: white;
       background: #2c97de;
       font-size: 1.5em;
       font-weight: 500;
-      align-items: center; }
-    .feedback-pages .content .content-textarea {
+      align-items: center;
+      transition: background .25s; }
+      .feedback-pages .content .content-submit:hover {
+        background: #2677ad; }
+    .feedback-pages .content .content-textarea,
+    .feedback-pages .content .content-input {
       border-radius: 5px;
       padding: 12px;
-      border-color: #ddd;
       width: 100%;
-      height: 54%;
-      margin-top: 10px; }
+      margin-top: 10px;
+      border: 1px solid #ddd; }
+    .feedback-pages .content .content-textarea {
+      height: 54%; }
+    .feedback-pages .content .content-backlink {
+      position: absolute;
+      bottom: 70px; }
     .feedback-pages .content .content-title,
     .feedback-pages .content .content-textarea {
       opacity: 0;

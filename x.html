@@ -30,18 +30,28 @@
 
                 <textarea class="content-textarea" placeholder="Give feedback or ask for help"></textarea>
 
-                <a href="#" class="content-submit">Submit</a>
+                <a href="#" class="content-submit" data-go-to-page="two">Next</a>
 
             </div>
 
             <div class="feedback-page content" data-pagename="two">
 
-                <h1 class="content-title">What should we do next?</h1>
+                <h1 class="content-title">Your contact details</h1>
+
+                <input class="content-input" type="text" name="email" value="" placeholder="Email address" data-email-input="" maxlength="255">
+
+                <a href="#" class="content-backlink text-grey" data-go-to-page="one">← Edit Message</a>
+
+                <a href="#" class="content-submit" data-go-to-page="three">Submit</a>
 
             </div>
 
             <div class="feedback-page content" data-pagename="three">
-                3
+
+                <h1 class="content-title">Thank you for you message. We'll be in touch soon!</h1>
+
+                <a href="#" class="content-submit"></a>
+
             </div>
 
         </div>

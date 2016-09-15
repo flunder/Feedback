@@ -43,11 +43,13 @@ var Pages = {
     },
 
     cacheDom: function(){
+        this.$container = $('.feedback-container');
         this.$pages = $('.feedback-page');
     },
 
     bindEvents: function(){
         this.$pages.on('show', this.showPage.bind(this));
+        this.$pages.on('click', '*[data-go-to-page]', this.showPage.bind(this));
     },
 
     ready: function(){
@@ -55,8 +57,12 @@ var Pages = {
     },
 
     showPage: function(name){
-        this.$pages.removeClass('isVisible');
-        this.$currentPage = this.$pages.filter('[data-pagename="' + name + '"]').addClass('isVisible');
+
+        name = (typeof name == "object") ? $(name.target).data('go-to-page') : name;
+
+        var id = this.$pages.filter('*[data-pagename="' + name + '"]').index() + 1;
+
+        this.$container.attr('data-show-page', id);
     },
 
 }
