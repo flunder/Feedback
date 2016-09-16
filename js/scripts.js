@@ -75,6 +75,7 @@ var Validation = {
 var Pages = {
 
     $currentPage: false,
+    currentPageId: false,
 
     init: function(){
         this.cacheDom();
@@ -98,31 +99,41 @@ var Pages = {
 
     showPage: function(name){
 
-        // We're still on the current page
-        // Let's validate if we can go to the next pages
-        // Focus on the first field and return if
+        // Event or string
 
-        if (this.$currentPage && this.$currentPage.find('input.required')){
+        name = (typeof name == "object") ? $(name.target).data('go-to-page') : name;
 
-            var invalidFields = this.$currentPage.find('input.required:not(".isValid")').length;
+        // Going forward or backward?
 
-            if (invalidFields > 0) {
-                this.$currentPage.find('input.required').first().focus();
-                return;
+        var newpageId = this.$pages.filter('*[data-pagename="' + name + '"]').index() + 1;
+        var lastpageId = this.currentPageId;
+
+        // If going forward ( not previous ) do some validations
+        // Focus on the first field and return if we have invalids
+
+        if (newpageId > lastpageId) {
+
+            if (this.$currentPage && this.$currentPage.find('input.required')){
+
+                var invalidFields = this.$currentPage.find('input.required:not(".isValid")').length;
+
+                if (invalidFields > 0) {
+                    this.$currentPage.find('input.required').first().focus();
+                    return;
+                }
+
             }
 
         }
 
-        // All good, we can move to the next page
+        // All good, we can move to the next page ------------------------------
 
-        // Event or string
-        name = (typeof name == "object") ? $(name.target).data('go-to-page') : name;
-
-        // Hold onto currentPage
+        // Hold onto currentPage and Id
         this.$currentPage = this.$pages.filter('*[data-pagename="' + name + '"]');
+        this.currentPageId = this.$currentPage.index() + 1;
 
         // Change class attr on the container to trigger the animation
-        this.$container.attr('data-show-page', this.$currentPage.index() + 1);
+        this.$container.attr('data-show-page', this.currentPageId);
     },
 
 }
