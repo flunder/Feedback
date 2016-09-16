@@ -20,7 +20,10 @@
 
     <div class="feedback-container">
 
-        <a href="#" class="feedback-trigger">!</a>
+        <a href="#" class="feedback-trigger">
+            <img class="open" src="svg/icon-speechbubble.svg" />
+            <img class="close" src="svg/icon-close.svg" />
+        </a>
 
         <div class="feedback-pages">
 
@@ -38,9 +41,10 @@
 
                 <h1 class="content-title">Your contact details</h1>
 
-                <input class="content-input" type="text" name="email" value="" placeholder="Email address" data-email-input="" maxlength="255">
+                <input class="content-input" type="text" name="name" value="" placeholder="Name" maxlength="255">
+                <input class="content-input required" type="text" name="email" value="" placeholder="Email address" maxlength="255">
 
-                <a href="#" class="content-backlink text-grey" data-go-to-page="one">← Edit Message</a>
+                <a href="#" class="content-backlink" data-go-to-page="one">← Edit Message</a>
 
                 <a href="#" class="content-submit" data-go-to-page="three">Submit</a>
 

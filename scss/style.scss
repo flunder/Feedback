@@ -23,22 +23,10 @@ Primary style
 
     border-radius: 5px;
     overflow: hidden;
+    box-shadow: 0 0 10px #d2d2d2;
 
     transition: width 0.5s 0.15s, height 0.5s 0.15s;
     transition-timing-function: cubic-bezier(0.71, -0.34, 0.35, 1.11);
-
-    &.isOpen {
-        width: 320px;
-        height: 270px;
-
-        transition: width 0.35s, height 0.35s;
-        transition-timing-function: cubic-bezier(0.74, -0.18, 0.38, 1.32);
-
-        .feedback-trigger {
-            border-radius: 0px;
-            transition: border-radius 0s;
-        }
-    }
 
     .feedback-trigger {
         width: 50px;
@@ -50,14 +38,64 @@ Primary style
         right: 0;
         bottom: 0;
         z-index: 10;
-        padding: 20px 22px;
+        padding: 13px;
         font-size: 16px;
         background: white;
 
-        transition: border-radius 0s 1s;
+        transition: border-radius 0s 1s, background-color 1s 0s;
+
+        img {
+            width: 25px;
+            height: 25px;
+            max-width: none;
+
+            &.close {
+                opacity: 0;
+                width: 23px;
+                height: 23px;
+                padding: 5px 3px 3px;
+            }
+        }
+
+        .open,
+        .close {
+            position: absolute;
+            transition: opacity .2s .5s;
+        }
+
+    }
+
+    &.isOpen {
+        width: 320px;
+        height: 270px;
+
+        transition: width 0.35s, height 0.35s;
+        transition-timing-function: cubic-bezier(0.74, -0.18, 0.38, 1.32);
+
+        .feedback-trigger {
+            border-radius: 0px;
+            transition: border-radius 0s, background-color .8s;
+            background: #f6f6f6;
+
+            .open  { opacity: 0; }
+            .close { opacity: 1; animation: turnin .5s ; }
+
+            .open,
+            .close {
+                transition: opacity .2s .15s;
+            }
+
+        }
+
+        @keyframes turnin {
+            0%   { transform: rotate(-80deg) }
+            100% { transform: rotate(0deg)  }
+        }
+
     }
 
 }
+
 
 .feedback-pages {
     width: $pages * 100%;
@@ -140,6 +178,12 @@ Primary style
             width: 100%;
             margin-top: 10px;
             border: 1px solid #ddd;
+
+            &:focus {
+                outline: none;
+                border-color: #2c97de;
+                box-shadow: 0 0 5px rgba(44, 151, 222, 0.2);
+            }
         }
 
         .content-textarea {
