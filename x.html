@@ -20,7 +20,7 @@
 
     <div class="feedback-container">
 
-        <a href="#" class="feedback-trigger">
+        <a href="#" class="feedback-trigger noSelect">
             <img class="open" src="svg/icon-speechbubble.svg" />
             <img class="close" src="svg/icon-close.svg" />
         </a>
@@ -33,7 +33,7 @@
 
                 <textarea class="content-textarea" placeholder="Give feedback or ask for help"></textarea>
 
-                <a href="#" class="content-submit" data-go-to-page="two">Next</a>
+                <a href="#" class="content-submit noSelect" data-go-to-page="two">Next</a>
 
             </div>
 
@@ -42,11 +42,11 @@
                 <h1 class="content-title">Your contact details</h1>
 
                 <input class="content-input" type="text" name="name" value="" placeholder="Name" maxlength="255">
-                <input class="content-input required" type="text" name="email" value="" placeholder="Email address" maxlength="255">
+                <input class="content-input required" type="email" name="email" value="" placeholder="Email address" maxlength="255">
 
-                <a href="#" class="content-backlink" data-go-to-page="one">← Edit Message</a>
+                <a href="#" class="content-backlink noSelect" data-go-to-page="one">← Edit Message</a>
 
-                <a href="#" class="content-submit" data-go-to-page="three">Submit</a>
+                <a href="#" class="content-submit noSelect" data-go-to-page="three">Submit</a>
 
             </div>
 
@@ -54,7 +54,7 @@
 
                 <h1 class="content-title">Thank you for you message. We'll be in touch soon!</h1>
 
-                <a href="#" class="content-submit"></a>
+                <a href="#" class="content-submit noSelect"></a>
 
             </div>
 

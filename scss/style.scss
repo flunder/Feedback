@@ -78,7 +78,7 @@ Primary style
             background: #f6f6f6;
 
             .open  { opacity: 0; }
-            .close { opacity: 1; animation: turnin .5s ; }
+            .close { opacity: 1; animation: turnin .4s; }
 
             .open,
             .close {
@@ -183,6 +183,15 @@ Primary style
                 outline: none;
                 border-color: #2c97de;
                 box-shadow: 0 0 5px rgba(44, 151, 222, 0.2);
+            }
+
+            &.required {
+                background: url("../svg/icon-required.svg") no-repeat 277px -9px transparent;
+
+                &.isValid {
+                    background: none;
+                }
+
             }
         }
 

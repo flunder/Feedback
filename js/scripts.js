@@ -29,7 +29,47 @@ var Feedback = {
 
 }
 
-/* SCREENS
+/* VALIDATION
+--------------------------------------- */
+
+var Validation = {
+
+    init: function(){
+        this.cacheDom();
+        this.bindEvents();
+    },
+
+    cacheDom: function(){
+        this.$inputs = $('input.required');
+    },
+
+    bindEvents: function(){
+        this.$inputs.on('keyup', this.onKeyPress.bind(this));
+    },
+
+    onKeyPress: function(e){
+
+        var $input = this.$inputs.filter($(e.target));
+
+        if ($input.attr('type') == "email") {
+            $input.state = this.validateEmail($input.val());
+            this.setState($input, $input.state);
+        }
+
+    },
+
+    setState: function($input, state){
+        $input.toggleClass('isValid', state)
+    },
+
+    validateEmail: function(email){
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+}
+
+
+/* PAGES
 --------------------------------------- */
 
 var Pages = {
@@ -58,16 +98,37 @@ var Pages = {
 
     showPage: function(name){
 
+        // We're still on the current page
+        // Let's validate if we can go to the next pages
+        // Focus on the first field and return if
+
+        if (this.$currentPage && this.$currentPage.find('input.required')){
+
+            var invalidFields = this.$currentPage.find('input.required:not(".isValid")').length;
+
+            if (invalidFields > 0) {
+                this.$currentPage.find('input.required').first().focus();
+                return;
+            }
+
+        }
+
+        // All good, we can move to the next page
+
+        // Event or string
         name = (typeof name == "object") ? $(name.target).data('go-to-page') : name;
 
-        var id = this.$pages.filter('*[data-pagename="' + name + '"]').index() + 1;
+        // Hold onto currentPage
+        this.$currentPage = this.$pages.filter('*[data-pagename="' + name + '"]');
 
-        this.$container.attr('data-show-page', id);
+        // Change class attr on the container to trigger the animation
+        this.$container.attr('data-show-page', this.$currentPage.index() + 1);
     },
 
 }
 
 $(function(){
-    Feedback.init();
     Pages.init();
+    Validation.init();
+    Feedback.init();
 })
